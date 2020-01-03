@@ -1,14 +1,14 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import {
-  Navbar,
-  NavbarBrand,
   Collapse,
   Nav,
+  Navbar,
+  NavbarBrand,
+  NavbarToggler,
   NavItem,
-  NavLink,
-  NavbarToggler
+  NavLink
 } from "reactstrap";
-import { Link } from "react-router-dom";
 
 const Hearder = () => {
   const [open, setOpen] = useState(false);
@@ -18,19 +18,26 @@ const Hearder = () => {
   };
   return (
     <Navbar color="light" light expand="md">
-      <NavbarBrand tag={Link} to="/">
-        Minhas séries
-      </NavbarBrand>
-      <NavbarToggler onClick={toggle} />
-      <Collapse isOpen={open} navbar>
-        <Nav className="ml-auto" navbar>
-          <NavItem>
-            <NavLink tag={Link} to="/genres">
-              Gêneros
-            </NavLink>
-          </NavItem>
-        </Nav>
-      </Collapse>
+      <div className="container">
+        <NavbarBrand tag={Link} to="/">
+          Minhas séries
+        </NavbarBrand>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={open} navbar>
+          <Nav className="ml-auto" navbar>
+            <NavItem>
+              <NavLink tag={Link} to="/genres">
+                Gêneros
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink tag={Link} to="/series">
+                Séries
+              </NavLink>
+            </NavItem>
+          </Nav>
+        </Collapse>
+      </div>
     </Navbar>
   );
 };

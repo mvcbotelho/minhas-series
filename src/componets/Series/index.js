@@ -2,17 +2,17 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const Genres = () => {
+const Series = () => {
   const [data, setData] = useState();
 
   useEffect(() => {
-    axios.get("/api/genres").then(res => {
+    axios.get("/api/series").then(res => {
       setData(res.data.data);
     });
   }, []);
 
   const deleteLine = id => {
-    axios.delete("/api/genres/" + id).then(res => {
+    axios.delete("/api/series/" + id).then(res => {
       const filtered = data.filter(item => item.id !== id);
       setData(filtered);
     });
@@ -30,22 +30,22 @@ const Genres = () => {
           >
             <i className="fas fa-trash"></i>
           </button>
-          <Link className="btn btn-info" to={`/genres/${record.id}`}>
+          <Link className="btn btn-info" to={`/series/${record.id}`}>
             <i className="fas fa-pencil-alt"></i>
           </Link>
         </td>
       </tr>
     );
   };
-
+  console.log("data", data);
   if (data) {
     if (data.length === 0) {
       return (
         <div className="container">
-          <h1>Gêneros</h1>
-          <Link to="/genres/new">Novo Gênero</Link>
+          <h1>Série</h1>
+          <Link to="/series/new">Nova Série</Link>
           <div className="alert alert-warning" role="alert">
-            Você não possui gêneros cadastrados!!!
+            Você não possui série cadastradas!!!
           </div>
         </div>
       );
@@ -53,8 +53,8 @@ const Genres = () => {
   } else {
     return (
       <div className="container">
-        <h1>Gêneros</h1>
-        <Link to="/genres/new">Novo Gênero</Link>
+        <h1>Série</h1>
+        <Link to="/series/new">Nova Série</Link>
         <div className="spinner-border text-dark" role="status">
           <span className="sr-only">Carregando...</span>
         </div>
@@ -64,8 +64,8 @@ const Genres = () => {
 
   return (
     <div className="container">
-      <h1>Gêneros</h1>
-      <Link to="/genres/new">Novo Gênero</Link>
+      <h1>Séries</h1>
+      <Link to="/series/new">Nova Série</Link>
       <table className="table table-dark">
         <thead>
           <tr>
@@ -80,4 +80,4 @@ const Genres = () => {
   );
 };
 
-export default Genres;
+export default Series;
